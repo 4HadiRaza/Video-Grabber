@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Grabber</title>
+  <meta name="description" content="Paste a video link and download the file.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <p class="mark">Video Grabber</p>
+
+    <h1>Paste a link.<br>Get the file.</h1>
+    <p class="lede">Works with YouTube, Vimeo, X, Instagram, TikTok, Reddit and most other sites that play video.</p>
+
+    <form id="lookup" novalidate>
+      <label for="url" class="sr-only">Video link</label>
+      <div class="field">
+        <input id="url" name="url" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://" required>
+        <div class="field-actions">
+          <button type="button" id="paste" class="btn ghost">Paste</button>
+          <button type="submit" id="go" class="btn primary">Look up</button>
+        </div>
+      </div>
+
+      <div id="access" class="access" hidden>
+        <label for="code">Access code</label>
+        <input id="code" type="password" autocomplete="current-password">
+      </div>
+    </form>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section id="card" class="card" hidden aria-labelledby="title">
+      <div class="thumb"><img id="thumb" alt="" referrerpolicy="no-referrer"></div>
+      <div class="details">
+        <h2 id="title"></h2>
+        <p class="meta"><span id="site"></span><span id="uploader"></span><span id="duration" class="tc"></span></p>
+      </div>
+      <fieldset class="quality">
+        <legend>Quality</legend>
+        <div id="pills" class="pills"></div>
+      </fieldset>
+      <button type="button" id="download" class="btn primary wide">Download</button>
+    </section>
+
+    <section id="progress" class="progress" hidden aria-live="polite">
+      <div class="row">
+        <span id="stage" class="stage">Starting</span>
+        <span class="tc eta"><span id="eta">--:--</span> left</span>
+      </div>
+      <div id="timeline" class="timeline" role="progressbar" aria-label="Download progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="track"><div class="fill"></div></div>
+        <div class="playhead"></div>
+      </div>
+      <div class="row stats">
+        <span id="pct" class="tc">0%</span>
+        <span id="speed" class="tc"></span>
+        <span id="size" class="tc"></span>
+        <button type="button" id="cancel" class="btn ghost small">Cancel</button>
+      </div>
+    </section>
+
+    <section id="done" class="done" hidden aria-live="polite">
+      <p class="done-name" id="doneName"></p>
+      <p class="done-note">Your download should start by itself. If it doesn’t, <a id="saveLink" href="#">save the file</a>.</p>
+      <button type="button" id="again" class="btn ghost">Download another</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Only download videos you have the right to save. Files are deleted <span id="ttl">15</span> minutes after they’re ready.</p>
+  </footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
